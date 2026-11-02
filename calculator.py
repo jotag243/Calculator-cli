@@ -1,6 +1,7 @@
 # calculatrice CLI en python
 from operator import addition, soustraction, division,multiplication
 
+
 def checkOpertor(op):
     operator =("+", "-", "/", "*")
     while(op  not in operator ):
@@ -10,12 +11,14 @@ def checkOpertor(op):
     return op
 
 def isThisNumber(numb):
-    try:
-        numb = float(numb)
-        return numb
-    except ValueError:
-        print("la valeur entrer n'est pas un chiffre ou un nombre reesayer!\n")
-        return entry()
+    while True:
+        try:
+            numb = float(numb)
+            return numb
+        except ValueError:
+            print("la valeur entrer n'est pas un chiffre ou un nombre reesayer!\n")
+            numb = input("Veuillez reesayer! : ")
+        # return entry()
 
 
 def entry():
@@ -35,11 +38,6 @@ num1,num2,ope = entry()
 
 # Main calculator
 def calculator(a,b,op):
-    # a = float(a)
-    # b = float(b)
-
-    # global rslt
-
     match op:
         case "+":
             rslt= addition(a,b)
@@ -61,7 +59,7 @@ def iscalculDone(rslt):
     
     print(f"Resultat {rslt}\n")
     demand=input("voulez-vous continuez a partir du calcule precedent? (O ou Y pour continuer | N pour arret) ")
-    while(demand != "N".lower and demand == "Y".lower()):
+    while(demand != "N".lower and demand == "Y".lower() and demand == "O".lower()):
         # global op,a,b
         a = rslt
         op = checkOpertor(input("Quel operation voulez-vous effectuer au calcul precedent, (+,-, *, /)? "))
